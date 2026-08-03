@@ -26,3 +26,10 @@ jobs:
         run: |
           echo "Listing S3 Buckets"
           aws s3 ls
+
+      - name: Debug GitHub IDs
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Repository ID: ${{ github.repository_id }}"
+          echo "Repository Owner: ${{ github.repository_owner }}"
+          echo "Repository Owner ID: ${{ github.repository_owner_id }}"

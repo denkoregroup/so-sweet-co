@@ -6,9 +6,9 @@ on:
       - main
   workflow_dispatch:
 
-# permissions:
-#   id-token: write   # This is required for requesting the JWT
-#   contents: read    # This is required for actions/checkout
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
 
 jobs:
   listing_buckets:
@@ -16,18 +16,18 @@ jobs:
     steps:
       - name: Log
         run: echo "hello world"
-      # - name: Set up AWS Creds
-      #   uses: aws-actions/configure-aws-credentials@v4
-      #   with:
-      #     role-to-assume: ${{ secrets.IAM_ROLE }}
-      #     aws-region: ${{ secrets.AWS_REGION }}
+      - name: Set up AWS Creds
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.IAM_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      # - name: List S3 Buckets
-      #   env:
-      #     AWS_REGION: ${{ secrets.AWS_REGION }}
-      #   run: |
-      #     echo "Listing S3 Buckets"
-      #     aws s3 ls
+      - name: List S3 Buckets
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          echo "Listing S3 Buckets"
+          aws s3 ls
 
       # - name: Debug GitHub IDs
       #   run: |

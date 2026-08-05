@@ -2,6 +2,11 @@ resource "aws_s3_bucket" "static_site" {
   bucket = var.bucket_name
 }
 
+moved {
+  from = aws_s3_bucket.static-site
+  to   = aws_s3_bucket.static_site
+}
+
 resource "aws_s3_bucket_website_configuration" "static-site-config" {
   bucket = aws_s3_bucket.static_site.id
 
@@ -35,4 +40,3 @@ resource "aws_s3_bucket_policy" "static_site_policy" {
 
   depends_on = [ aws_s3_bucket_public_access_block.static_site_access ]
 }
-
